@@ -1,0 +1,28 @@
+#pragma once
+
+#include "CBaseModelEntity.h"
+
+class CParticleSystem : public CBaseModelEntity
+{
+public:
+	DECLARE_SCHEMA_CLASS(CParticleSystem);
+
+	SCHEMA_FIELD(bool, m_bActive)
+	SCHEMA_FIELD(bool, m_bStartActive)
+	SCHEMA_FIELD(bool, m_bFrozen)
+	SCHEMA_FIELD(CUtlSymbolLarge, m_iszEffectName)
+	SCHEMA_FIELD(int, m_nTintCP)
+	SCHEMA_FIELD_POINTER(Color, m_clrTint)
+	SCHEMA_FIELD_POINTER(CHandle<CBaseEntity>, m_hControlPointEnts)
+};
+
+class CEnvParticleGlow : public CParticleSystem
+{
+public:
+	DECLARE_SCHEMA_CLASS(CEnvParticleGlow);
+
+	SCHEMA_FIELD(float, m_flAlphaScale)
+	SCHEMA_FIELD(float, m_flRadiusScale)
+	SCHEMA_FIELD(float, m_flSelfIllumScale)
+	SCHEMA_FIELD_POINTER(Color, m_ColorTint)
+};
