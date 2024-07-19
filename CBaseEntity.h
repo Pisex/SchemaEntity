@@ -171,6 +171,7 @@ public:
 	void SetAbsOrigin(Vector vecOrigin) { m_CBodyComponent->m_pSceneNode->m_vecAbsOrigin = vecOrigin; }
 	void SetAbsRotation(QAngle angAbsRotation) { m_CBodyComponent->m_pSceneNode->m_angAbsRotation = angAbsRotation; }
 	void SetAngRotation(QAngle angRotation) { m_CBodyComponent->m_pSceneNode->m_angRotation = angRotation; }
+	CEntitySubclassVDataBase* GetVData() { return *(CEntitySubclassVDataBase**)((uint8*)(m_nSubclassID()) + 4); }
 
 	void SetAbsVelocity(Vector vecVelocity) { m_vecAbsVelocity = vecVelocity; }
 	void SetBaseVelocity(Vector vecVelocity) { m_vecBaseVelocity = vecVelocity; }

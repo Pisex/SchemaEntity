@@ -6,6 +6,11 @@ constexpr T CallVFunc(void* pThis, Args... args) noexcept
     return reinterpret_cast<T(*)(void*, Args...)> (reinterpret_cast<void***>(pThis)[0][index])(pThis, args...);
 }
 
+template <typename T, typename ...Args>
+constexpr T CallVFuncIndex(void* pThis, int index, Args... args) noexcept {
+    return reinterpret_cast<T(*)(void*, Args...)>(reinterpret_cast<void***>(pThis)[0][index])(pThis, args...);
+}
+
 #ifdef _WIN32
 #define WIN_LINUX(win, linux) win
 #else

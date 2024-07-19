@@ -85,16 +85,13 @@ inline constexpr uint64_t hash_64_fnv1a_const(const char *const str, const uint6
 																															\
 			static const auto m_key =																						\
 				schema::GetOffset(ThisClassName, datatable_hash, #varName, prop_hash);										\
-			Msg("DEBUG GetOffset: %i\n", m_key);																			\
 			static const auto m_chain =																						\
 				schema::FindChainOffset(ThisClassName);																		\
-			Msg("DEBUG FindChainOffset: %i | %s\n", m_chain, ThisClassName);												\
 			static const size_t offset = offsetof(ThisClass, varName);														\
 			ThisClass *pThisClass = (ThisClass *)((byte *)this - offset);													\
 																															\
 			if (m_chain != 0 && m_key.networked)																			\
 			{																												\
-				Msg("Found chain offset %d for %s::%s\n", m_chain, ThisClassName, #varName);								\
 				ChainNetworkStateChanged((uintptr_t)(pThisClass) + m_chain, m_key.offset + extra_offset);	                \
 			}																												\
 			else if(m_key.networked)																						\
@@ -160,5 +157,4 @@ namespace schema
 #define DECLARE_SCHEMA_CLASS(className) DECLARE_SCHEMA_CLASS_BASE(className, false)
 
 // Use this for classes that can be wholly included within other classes (like CCollisionProperty within CBaseModelEntity)
-#define DECLARE_SCHEMA_CLASS_INLINE(className) \
-	DECLARE_SCHEMA_CLASS_BASE(className, true)
+#define DECLARE_SCHEMA_CLASS_INLINE(className) DECLARE_SCHEMA_CLASS_BASE(className, true)

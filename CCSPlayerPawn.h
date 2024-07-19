@@ -20,6 +20,15 @@ enum CSPlayerState
 
 class CCSPlayerController;
 
+struct EntitySpottedState_t
+{
+public:
+	DECLARE_SCHEMA_CLASS_INLINE(EntitySpottedState_t);
+
+	SCHEMA_FIELD(bool, m_bSpotted)
+	SCHEMA_FIELD_POINTER(uint32_t, m_bSpottedByMask)
+};
+
 class CCSPlayerPawnBase : public CBasePlayerPawn
 {
 public:
@@ -30,6 +39,8 @@ public:
 	SCHEMA_FIELD(CHandle<CCSPlayerController>, m_hOriginalController)
 	SCHEMA_FIELD(int32_t, m_iProgressBarDuration);
 	SCHEMA_FIELD(CPlayer_ViewModelServices*, m_pViewModelServices)
+	SCHEMA_FIELD(EntitySpottedState_t, m_entitySpottedState)
+	SCHEMA_FIELD(int32_t, m_ArmorValue)
 	
 	CCSPlayerController *GetOriginalController()
 	{

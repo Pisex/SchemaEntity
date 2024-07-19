@@ -75,10 +75,11 @@ public:
 	SCHEMA_FIELD(float, m_flNextPrimaryAttackTickRatio);
 	SCHEMA_FIELD(GameTick_t, m_nNextSecondaryAttackTick);
 	SCHEMA_FIELD(float, m_flNextSecondaryAttackTickRatio);
-	void Reload()
-	{
-		CALL_VIRTUAL(void, 418, this);
-	}
+
+    SCHEMA_FIELD(int32_t, m_iClip1);
+    SCHEMA_FIELD_POINTER(int32_t, m_pReserveAmmo);
+
+	CCSWeaponBaseVData* GetWeaponVData() { return (CCSWeaponBaseVData*)GetVData(); }
 };
 
 class CCSWeaponBase : public CBasePlayerWeapon

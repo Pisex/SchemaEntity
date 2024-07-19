@@ -69,6 +69,8 @@ public:
 	DECLARE_SCHEMA_CLASS(CCSPlayerController_InventoryServices);
 
 	SCHEMA_FIELD(int32_t, m_nPersonaDataXpTrailLevel)
+	SCHEMA_FIELD(int32_t, m_nPersonaDataPublicLevel)
+	SCHEMA_FIELD(uint16_t, m_unMusicID)
 
 };
 
