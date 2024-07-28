@@ -47,6 +47,8 @@ public:
 	DECLARE_SCHEMA_CLASS(CEconEntity)
 
 	SCHEMA_FIELD(CAttributeContainer, m_AttributeManager)
+	SCHEMA_FIELD(uint32, m_OriginalOwnerXuidLow)
+	SCHEMA_FIELD(uint32, m_OriginalOwnerXuidHigh)
 };
 
 class CBasePlayerWeaponVData : public CEntitySubclassVDataBase

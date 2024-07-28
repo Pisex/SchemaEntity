@@ -147,6 +147,7 @@ namespace schema
 {
 	int16_t FindChainOffset(const char *className);
 	SchemaKey GetOffset(const char *className, uint32_t classKey, const char *memberName, uint32_t memberKey);
+	int32_t GetServerOffset(const char *pszClassName, const char *pszPropName);
 }
 
 #define DECLARE_SCHEMA_CLASS_BASE(className, isStruct)			\

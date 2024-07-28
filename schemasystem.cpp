@@ -143,6 +143,25 @@ SchemaKey schema::GetOffset(const char* className, uint32_t classKey, const char
     return tableMap->Element(memberIndex);
 }
 
+int32_t schema::GetServerOffset(const char* pszClassName, const char* pszPropName)
+{
+    SchemaClassInfoData_t* pClassInfo = g_pSchemaSystem->FindTypeScopeForModule(MODULE_PREFIX "server" MODULE_EXT)->FindDeclaredClass(pszClassName).Get();
+    if (pClassInfo)
+    {
+        for (int i = 0; i < pClassInfo->m_nFieldCount; i++)
+        {
+            auto& pFieldData = pClassInfo->m_pFields[i];
+
+            if (std::strcmp(pFieldData.m_pszName, pszPropName) == 0)
+            {
+                return pFieldData.m_nSingleInheritanceOffset;
+            }
+        }
+    }
+
+    return -1;
+}
+
 void EntityNetworkStateChanged(uintptr_t entityInstance, uint nOffset)
 {
     reinterpret_cast<CEntityInstance*>(entityInstance)->NetworkStateChanged(nOffset);

@@ -23,6 +23,7 @@ public:
 	SCHEMA_FIELD(CHandle<CBasePlayerPawn>, m_hPawn)
 	SCHEMA_FIELD_POINTER(char, m_iszPlayerName)
 	SCHEMA_FIELD(PlayerConnectedState, m_iConnected)
+	SCHEMA_FIELD(uint32_t, m_iDesiredFOV);
 
     CBasePlayerPawn *GetPawn() { return m_hPawn.Get(); }
 	const char *GetPlayerName() { return m_iszPlayerName(); }

@@ -123,6 +123,7 @@ public:
 	SCHEMA_FIELD_POINTER(CUtlVector<CHandle<CBasePlayerWeapon>>, m_hMyWeapons)
 	SCHEMA_FIELD(CHandle<CBasePlayerWeapon>, m_hActiveWeapon)
 	SCHEMA_FIELD(CHandle<CBasePlayerWeapon>, m_hLastWeapon)
+	SCHEMA_FIELD_POINTER(uint16_t, m_iAmmo);
 };
 
 class CPlayer_ViewModelServices : public CPlayerPawnComponent
@@ -131,12 +132,19 @@ public:
 	DECLARE_SCHEMA_CLASS(CPlayer_ViewModelServices);
 };
 
+class CBaseViewModel : public CBaseModelEntity
+{
+public:
+	DECLARE_SCHEMA_CLASS(CBaseViewModel);
+	SCHEMA_FIELD(CUtlSymbolLarge, m_sVMName);	
+};
+
 class CCSPlayer_ViewModelServices : public CPlayer_ViewModelServices
 {
 public:
 	DECLARE_SCHEMA_CLASS(CCSPlayer_ViewModelServices);
-
-	SCHEMA_FIELD_POINTER(CHandle<CBodyComponentBaseAnimGraph>, m_hViewModel)
+	SCHEMA_FIELD_POINTER(CHandle<CBaseViewModel>, m_hViewModel)
+	// SCHEMA_FIELD_POINTER(CHandle<CBodyComponentBaseAnimGraph>, m_hViewModel)
 };
 
 class CCSPlayer_WeaponServices : public CPlayer_WeaponServices
