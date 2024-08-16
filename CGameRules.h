@@ -25,6 +25,7 @@ public:
 	SCHEMA_FIELD(bool, m_bWarmupPeriod);
 	SCHEMA_FIELD(GamePhase, m_gamePhase);
 	SCHEMA_FIELD(bool, m_bGameRestart);
+	SCHEMA_FIELD(bool, m_bBombPlanted);
 	SCHEMA_FIELD(int32_t, m_totaArenaoundsPlayed);
 	SCHEMA_FIELD(int32_t, m_nOvertimePlaying);
 	SCHEMA_FIELD(bool, m_bSwitchingTeamsAtRoundReset);

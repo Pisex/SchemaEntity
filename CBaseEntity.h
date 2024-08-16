@@ -1,5 +1,6 @@
 #pragma once
 #include <entity2/entityidentity.h>
+#include "mathlib/vector.h"
 #include "schemasystem.h"
 #include "ccollisionproperty.h"
 #include "globaltypes.h"
@@ -163,6 +164,7 @@ public:
 	SCHEMA_FIELD(CUtlSymbolLarge, m_target)
 	SCHEMA_FIELD(CUtlSymbolLarge, m_iGlobalname)
 	SCHEMA_FIELD(CHandle<CBaseEntity>, m_hOwnerEntity)
+	SCHEMA_FIELD(uint32, m_fEffects)
 
 	int entindex() { return m_pEntity->m_EHandle.GetEntryIndex(); }
 
@@ -180,6 +182,17 @@ public:
 	{
 		CALL_VIRTUAL(void, 154, this, position, angles, velocity);
 	}
+	
+	void SetMoveType(MoveType_t nMoveType)
+	{
+		m_MoveType() = nMoveType;
+		m_nActualMoveType() = nMoveType;
+	}
+
+	void TakeDamage(int iDamage)
+	{
+		m_iHealth() = m_iHealth() - iDamage;
+	}
 
 	bool IsPawn()
 	{
@@ -189,6 +202,21 @@ public:
 	bool IsController()
 	{
 		return CALL_VIRTUAL(bool, 160, this);
+	}
+
+	void SetCollisionGroup()
+	{
+		if (!m_pCollision())
+			return;
+
+		m_pCollision->m_collisionAttribute().m_nCollisionGroup = COLLISION_GROUP_DEBRIS;
+		m_pCollision->m_CollisionGroup = COLLISION_GROUP_DEBRIS;
+		CollisionRulesChanged();
+	}
+
+	void CollisionRulesChanged()
+	{
+		CALL_VIRTUAL(void, 177, this);
 	}
 
 	bool IsAlive() { return m_lifeState() == LifeState_t::LIFE_ALIVE; }

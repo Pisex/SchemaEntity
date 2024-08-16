@@ -35,6 +35,15 @@ public:
 	SCHEMA_FIELD(int, m_iDeaths)
 	SCHEMA_FIELD(int, m_iAssists)
 	SCHEMA_FIELD(int, m_iDamage)
+	SCHEMA_FIELD(int, m_iEquipmentValue)
+	SCHEMA_FIELD(int, m_iMoneySaved)
+	SCHEMA_FIELD(int, m_iKillReward)
+	SCHEMA_FIELD(int, m_iLiveTime)
+	SCHEMA_FIELD(int, m_iHeadShotKills)
+	SCHEMA_FIELD(int, m_iObjective)
+	SCHEMA_FIELD(int, m_iCashEarned)
+	SCHEMA_FIELD(int, m_iUtilityDamage)
+	SCHEMA_FIELD(int, m_iEnemiesFlashed)
 };
 
 struct CSMatchStats_t : public CSPerRoundStats_t
@@ -98,6 +107,7 @@ public:
 
 	SCHEMA_FIELD(float, m_flFallVelocity)
 	SCHEMA_FIELD(float, m_bInCrouch)
+	SCHEMA_FIELD(bool, m_bDucked)
 	SCHEMA_FIELD(uint32_t, m_nCrouchState)
 	SCHEMA_FIELD(bool, m_bInDuckJump)
 	SCHEMA_FIELD(float, m_flSurfaceFriction)
@@ -205,6 +215,12 @@ public:
 	// Recommended to use CCSPlayer_WeaponServices::DropWeapon instead (parameter is ignored here)
     virtual void         DropActiveWeapon(CBasePlayerWeapon* pWeapon) = 0;
     virtual void         StripPlayerWeapons(bool removeSuit = false) = 0;
+
+	DECLARE_SCHEMA_CLASS(CCSPlayer_ItemServices);
+	
+	SCHEMA_FIELD(bool, m_bHasDefuser);
+	SCHEMA_FIELD(bool, m_bHasHelmet);
+	SCHEMA_FIELD(bool, m_bHasHeavyArmor);
 };
 
 // We need an exactly sized class to be able to iterate the vector, our schema system implementation can't do this

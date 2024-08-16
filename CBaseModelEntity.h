@@ -13,13 +13,22 @@ public:
 	SCHEMA_FIELD(RenderMode_t, m_nRenderMode)
 	SCHEMA_FIELD(float, m_flDissolveStartTime)
     
-	const char* GetModelName()
+	CUtlSymbolLarge GetModelName()
 	{
-		return ((CSkeletonInstance*)m_CBodyComponent->m_pSceneNode.Get())->m_modelState().m_ModelName.Get().String();
+		return ((CSkeletonInstance*)m_CBodyComponent->m_pSceneNode.Get())->m_modelState().m_ModelName.Get();
 	}
 };
 
 class CBaseProp : public CBaseModelEntity
 {
 public:
+	DECLARE_SCHEMA_CLASS(CBaseProp);
+};
+
+class CBeam : public CBaseModelEntity
+{
+public:
+	DECLARE_SCHEMA_CLASS(CBeam);
+    SCHEMA_FIELD(Vector, m_vecEndPos);
+    SCHEMA_FIELD(float, m_fWidth);
 };

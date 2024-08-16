@@ -50,7 +50,20 @@ public:
 	    m_flInterval = m_func();
 
         return m_flInterval >= 0;
-	}
+    }
+
+    inline void RemoveTimer()
+    {
+        for (int i = g_timers.Head(); i != g_timers.InvalidIndex(); i = g_timers.Next(i))
+        {
+            if (g_timers[i] == this)
+            {
+                g_timers.Remove(i);
+                delete this;
+                return;
+            }
+        }
+    }
 
     std::function<float()> m_func;
 };

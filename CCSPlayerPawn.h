@@ -40,7 +40,7 @@ public:
 	SCHEMA_FIELD(int32_t, m_iProgressBarDuration);
 	SCHEMA_FIELD(CPlayer_ViewModelServices*, m_pViewModelServices)
 	SCHEMA_FIELD(EntitySpottedState_t, m_entitySpottedState)
-	SCHEMA_FIELD(int32_t, m_ArmorValue)
+	SCHEMA_FIELD(float, m_flFlashDuration)
 	
 	CCSPlayerController *GetOriginalController()
 	{
@@ -61,4 +61,5 @@ public:
 	SCHEMA_FIELD(float, m_flVelocityModifier);
 	SCHEMA_FIELD(CCSPlayer_ActionTrackingServices*, m_pActionTrackingServices);
 	SCHEMA_FIELD(GameTime_t, m_flHealthShotBoostExpirationTime);
+	SCHEMA_FIELD(int32_t, m_ArmorValue);
 };
