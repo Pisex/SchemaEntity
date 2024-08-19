@@ -69,6 +69,8 @@ enum TakeDamageFlags_t : uint32_t
 
 class CTakeDamageInfo
 {
+private:
+	[[maybe_unused]] uint8_t __pad0000[0x8];
 public:
 	Vector m_vecDamageForce;
 	Vector m_vecDamagePosition;
@@ -78,16 +80,35 @@ public:
 	CHandle<CBaseEntity> m_hAttacker;
 	CHandle<CBaseEntity> m_hAbility;
 	float m_flDamage;
+	float m_flTotalledDamage;
 	DamageTypes_t m_bitsDamageType;
 	int32_t m_iDamageCustom;
 	uint8_t m_iAmmoType;
+
+private:
+	[[maybe_unused]] uint8_t __pad0051[0xf];
+
+public:
 	float m_flOriginalDamage;
 	bool m_bShouldBleed;
 	bool m_bShouldSpark;
+
+private:
+	[[maybe_unused]] uint8_t __pad0066[0xa];
+
+public:
 	TakeDamageFlags_t m_nDamageFlags;
 	int32_t m_nNumObjectsPenetrated;
 	uint64_t m_hScriptInstance;
+
+private:
+	[[maybe_unused]] uint8_t __pad0080[0x14];
+
+public:
 	bool m_bInTakeDamageFlow;
+
+private:
+	[[maybe_unused]] uint8_t __pad009d[0x8];
 };
 
 struct CTakeDamageInfoContainer

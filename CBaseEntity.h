@@ -219,6 +219,8 @@ public:
 		CALL_VIRTUAL(void, 177, this);
 	}
 
+	int GetTeam() { return m_iTeamNum(); }
+
 	bool IsAlive() { return m_lifeState() == LifeState_t::LIFE_ALIVE; }
 
 	CHandle<CBaseEntity> GetHandle() { return m_pEntity->m_EHandle; }
