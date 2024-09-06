@@ -17,6 +17,7 @@ public:
 	SCHEMA_FIELD(bool, m_bPawnIsAlive);
 	SCHEMA_FIELD(int32_t, m_nDisconnectionTick);
 	SCHEMA_FIELD(CHandle<CCSPlayerPawn>, m_hPlayerPawn);
+	SCHEMA_FIELD(int32, m_DesiredObserverMode);
 	SCHEMA_FIELD(CHandle<CCSPlayerPawnBase>, m_hObserverPawn);
 	SCHEMA_FIELD(CHandle<CCSPlayerController>, m_hOriginalControllerOfCurrentPawn);
 	SCHEMA_FIELD(uint32_t, m_iPawnHealth);

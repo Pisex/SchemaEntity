@@ -24,13 +24,43 @@ enum gear_slot_t : uint32_t
 	GEAR_SLOT_LAST = 0xc,
 };
 
+class CEconItemAttribute
+{
+public:
+	DECLARE_SCHEMA_CLASS_INLINE(CEconItemAttribute);
+
+	SCHEMA_FIELD(uint16_t, m_iAttributeDefinitionIndex);
+	SCHEMA_FIELD(float, m_flValue);
+	SCHEMA_FIELD(float, m_flInitialValue);
+	SCHEMA_FIELD(int32_t, m_nRefundableCurrency);
+	SCHEMA_FIELD(bool, m_bSetBonus);
+};
+
+class CAttributeList
+{
+public:
+	DECLARE_SCHEMA_CLASS_INLINE(CAttributeList);
+	SCHEMA_FIELD_POINTER(CUtlVector<CEconItemAttribute>, m_Attributes);
+};
+
 class CEconItemView
 {
 public:
 	DECLARE_SCHEMA_CLASS_INLINE(CEconItemView);
 
-	SCHEMA_FIELD(uint16_t, m_iItemDefinitionIndex);
-	SCHEMA_FIELD(bool, m_bInitialized);
+	SCHEMA_FIELD(uint16, m_iItemDefinitionIndex)
+	SCHEMA_FIELD(int32, m_iEntityQuality)
+	SCHEMA_FIELD(uint32, m_iEntityLevel)
+	SCHEMA_FIELD(uint64, m_iItemID)
+	SCHEMA_FIELD(uint32, m_iItemIDHigh)
+	SCHEMA_FIELD(uint32, m_iItemIDLow)
+	SCHEMA_FIELD(uint32, m_iAccountID)
+	SCHEMA_FIELD(uint32, m_iInventoryPosition)
+	SCHEMA_FIELD(bool, m_bInitialized)
+	SCHEMA_FIELD(CAttributeList, m_AttributeList)
+	SCHEMA_FIELD(CAttributeList, m_NetworkedDynamicAttributes)
+	SCHEMA_FIELD_POINTER(char, m_szCustomName)
+	SCHEMA_FIELD_POINTER(char, m_szCustomNameOverride)
 };
 
 class CAttributeContainer
@@ -49,6 +79,10 @@ public:
 	SCHEMA_FIELD(CAttributeContainer, m_AttributeManager)
 	SCHEMA_FIELD(uint32, m_OriginalOwnerXuidLow)
 	SCHEMA_FIELD(uint32, m_OriginalOwnerXuidHigh)
+	SCHEMA_FIELD(int32, m_nFallbackPaintKit)
+	SCHEMA_FIELD(int32, m_nFallbackSeed)
+	SCHEMA_FIELD(float, m_flFallbackWear)
+	SCHEMA_FIELD(int32, m_nFallbackStatTrak)
 };
 
 class CBasePlayerWeaponVData : public CEntitySubclassVDataBase
@@ -56,6 +90,7 @@ class CBasePlayerWeaponVData : public CEntitySubclassVDataBase
 public:
 	DECLARE_SCHEMA_CLASS(CBasePlayerWeaponVData)
 	SCHEMA_FIELD(int, m_iMaxClip1)
+	SCHEMA_FIELD(int, m_iDefaultClip1)
 };
 
 class CCSWeaponBaseVData : public CBasePlayerWeaponVData

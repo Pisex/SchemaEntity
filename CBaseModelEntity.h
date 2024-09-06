@@ -15,6 +15,9 @@ public:
     
 	CUtlSymbolLarge GetModelName()
 	{
+		if(m_CBodyComponent == nullptr) return CUtlSymbolLarge();
+		if(m_CBodyComponent->m_pSceneNode == nullptr) return CUtlSymbolLarge();
+		if(((CSkeletonInstance*)m_CBodyComponent->m_pSceneNode.Get()) == nullptr) return CUtlSymbolLarge();
 		return ((CSkeletonInstance*)m_CBodyComponent->m_pSceneNode.Get())->m_modelState().m_ModelName.Get();
 	}
 };

@@ -113,6 +113,7 @@ public:
 	DECLARE_SCHEMA_CLASS(CModelState)
 
 	SCHEMA_FIELD(CUtlSymbolLarge, m_ModelName)
+	SCHEMA_FIELD(uint64, m_MeshGroupMask)
 };
 
 class CSkeletonInstance : CGameSceneNode

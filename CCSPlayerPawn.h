@@ -62,4 +62,5 @@ public:
 	SCHEMA_FIELD(CCSPlayer_ActionTrackingServices*, m_pActionTrackingServices);
 	SCHEMA_FIELD(GameTime_t, m_flHealthShotBoostExpirationTime);
 	SCHEMA_FIELD(int32_t, m_ArmorValue);
+	SCHEMA_FIELD(bool, m_bInBuyZone);
 };
