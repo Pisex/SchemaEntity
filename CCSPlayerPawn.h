@@ -3,6 +3,7 @@
 #include "CCSPlayerController.h"
 #include "CBasePlayerPawn.h"
 #include "services.h"
+#include "CCSWeaponBase.h"
 
 enum CSPlayerState
 {
@@ -58,6 +59,7 @@ class CCSPlayerPawn : public CCSPlayerPawnBase
 public:
 	DECLARE_SCHEMA_CLASS(CCSPlayerPawn);
 
+	SCHEMA_FIELD(CEconItemView, m_EconGloves);
 	SCHEMA_FIELD(float, m_flVelocityModifier);
 	SCHEMA_FIELD(CCSPlayer_ActionTrackingServices*, m_pActionTrackingServices);
 	SCHEMA_FIELD(GameTime_t, m_flHealthShotBoostExpirationTime);

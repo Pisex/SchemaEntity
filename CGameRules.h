@@ -28,6 +28,9 @@ public:
 	SCHEMA_FIELD(bool, m_bBombPlanted);
 	SCHEMA_FIELD(int32_t, m_totaArenaoundsPlayed);
 	SCHEMA_FIELD(int32_t, m_nOvertimePlaying);
+	SCHEMA_FIELD(bool, m_bBuyTimeEnded);
+	SCHEMA_FIELD(bool, m_bTCantBuy);
+	SCHEMA_FIELD(bool, m_bCTCantBuy);
 	SCHEMA_FIELD(bool, m_bSwitchingTeamsAtRoundReset);
 	SCHEMA_FIELD_POINTER(CUtlVector<SpawnPoint*>, m_CTSpawnPoints);
 	SCHEMA_FIELD_POINTER(CUtlVector<SpawnPoint*>, m_TerroristSpawnPoints);

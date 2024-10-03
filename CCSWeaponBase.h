@@ -24,23 +24,30 @@ enum gear_slot_t : uint32_t
 	GEAR_SLOT_LAST = 0xc,
 };
 
+class CAttributeManager
+{
+public:
+	DECLARE_SCHEMA_CLASS_INLINE(CAttributeManager);
+	SCHEMA_FIELD_POINTER(CUtlVector<CAttributeManager>, m_CachedResults);
+};
+
 class CEconItemAttribute
 {
 public:
-	DECLARE_SCHEMA_CLASS_INLINE(CEconItemAttribute);
-
-	SCHEMA_FIELD(uint16_t, m_iAttributeDefinitionIndex);
-	SCHEMA_FIELD(float, m_flValue);
-	SCHEMA_FIELD(float, m_flInitialValue);
-	SCHEMA_FIELD(int32_t, m_nRefundableCurrency);
-	SCHEMA_FIELD(bool, m_bSetBonus);
+    DECLARE_SCHEMA_CLASS_INLINE(CEconItemAttribute);
+    SCHEMA_FIELD(uint16_t, m_iAttributeDefinitionIndex);
+    SCHEMA_FIELD(int, m_flValue);
+    SCHEMA_FIELD(int, m_flInitialValue);
+    SCHEMA_FIELD(int32_t, m_nRefundableCurrency);
+    SCHEMA_FIELD(bool, m_bSetBonus);
 };
 
 class CAttributeList
 {
 public:
-	DECLARE_SCHEMA_CLASS_INLINE(CAttributeList);
-	SCHEMA_FIELD_POINTER(CUtlVector<CEconItemAttribute>, m_Attributes);
+    DECLARE_SCHEMA_CLASS_INLINE(CAttributeList);
+    SCHEMA_FIELD_POINTER(CUtlVector<CEconItemAttribute>, m_Attributes);
+    SCHEMA_FIELD(CAttributeManager*, m_pManager);
 };
 
 class CEconItemView
@@ -100,6 +107,7 @@ public:
 
 	SCHEMA_FIELD(gear_slot_t, m_GearSlot)
 	SCHEMA_FIELD(int, m_nPrice)
+	SCHEMA_FIELD(CUtlString, m_szName)
 	SCHEMA_FIELD(int, m_nPrimaryReserveAmmoMax);
 };
 

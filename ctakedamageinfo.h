@@ -67,48 +67,51 @@ enum TakeDamageFlags_t : uint32_t
 	DFLAG_IGNORE_ARMOR = 0x800,
 };
 
+struct AmmoIndex_t
+{
+public:
+	int8_t m_Value;
+};
+
 class CTakeDamageInfo
 {
 private:
-	[[maybe_unused]] uint8_t __pad0000[0x8];
+	[[maybe_unused]] uint8_t __pad0000[0x8]; // 0x0
 public:
-	Vector m_vecDamageForce;
-	Vector m_vecDamagePosition;
-	Vector m_vecReportedPosition;
-	Vector m_vecDamageDirection;
-	CHandle<CBaseEntity> m_hInflictor;
-	CHandle<CBaseEntity> m_hAttacker;
-	CHandle<CBaseEntity> m_hAbility;
-	float m_flDamage;
-	float m_flTotalledDamage;
-	DamageTypes_t m_bitsDamageType;
-	int32_t m_iDamageCustom;
-	uint8_t m_iAmmoType;
-
+	Vector m_vecDamageForce; // 0x8	
+	Vector m_vecDamagePosition; // 0x14	
+	Vector m_vecReportedPosition; // 0x20	
+	Vector m_vecDamageDirection; // 0x2c	
+	CHandle< CBaseEntity > m_hInflictor; // 0x38	
+	CHandle< CBaseEntity > m_hAttacker; // 0x3c	
+	CHandle< CBaseEntity > m_hAbility; // 0x40	
+	float m_flDamage; // 0x44	
+	float m_flTotalledDamage; // 0x48	
+	float m_flTotalledDamageAbsorbed; // 0x4c	
+	DamageTypes_t m_bitsDamageType; // 0x50	
+	int32_t m_iDamageCustom; // 0x54	
+	AmmoIndex_t m_iAmmoType; // 0x58	
 private:
-	[[maybe_unused]] uint8_t __pad0051[0xf];
-
+	[[maybe_unused]] uint8_t __pad0059[0xf]; // 0x59
 public:
-	float m_flOriginalDamage;
-	bool m_bShouldBleed;
-	bool m_bShouldSpark;
-
+	float m_flOriginalDamage; // 0x68	
+	bool m_bShouldBleed; // 0x6c	
+	bool m_bShouldSpark; // 0x6d	
 private:
-	[[maybe_unused]] uint8_t __pad0066[0xa];
-
+	[[maybe_unused]] uint8_t __pad006e[0x2]; // 0x6e
 public:
-	TakeDamageFlags_t m_nDamageFlags;
-	int32_t m_nNumObjectsPenetrated;
-	uint64_t m_hScriptInstance;
-
+	float m_flDamageAbsorbed; // 0x70	
 private:
-	[[maybe_unused]] uint8_t __pad0080[0x14];
-
+	[[maybe_unused]] uint8_t __pad0074[0xc]; // 0x74
 public:
-	bool m_bInTakeDamageFlow;
-
+	TakeDamageFlags_t m_nDamageFlags; // 0x80	
+	int32_t m_nNumObjectsPenetrated; // 0x88	
+	float m_flFriendlyFireDamageReductionRatio; // 0x8c	
+	HSCRIPT m_hScriptInstance; // 0x90	
 private:
-	[[maybe_unused]] uint8_t __pad009d[0x8];
+	[[maybe_unused]] uint8_t __pad0098[0x14]; // 0x98
+public:
+	bool m_bInTakeDamageFlow; // 0xac
 };
 
 struct CTakeDamageInfoContainer
