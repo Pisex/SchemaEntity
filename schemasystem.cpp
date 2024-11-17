@@ -135,10 +135,7 @@ SchemaKey schema::GetOffset(const char* className, uint32_t classKey, const char
     SchemaKeyValueMap_t *tableMap = schemaTableMap[tableMapIndex];
 	int16_t memberIndex = tableMap->Find(memberKey);
     if (!tableMap->IsValidIndex(memberIndex))
-    {
-        Msg("schema::GetOffset(): '%s' was not found in '%s'!\n", memberName, className);
-        return { 0, 0 };
-    }
+        throw std::runtime_error(std::string("schema::GetOffset(): ") + memberName + " was not found in " + className);
 
     return tableMap->Element(memberIndex);
 }

@@ -16,7 +16,7 @@ public:
 
     void CommitSuicide(bool bExplode, bool bForce)
 	{
-		CALL_VIRTUAL(void, 372, this, bExplode, bForce);
+		CALL_VIRTUAL(void, 380, this, bExplode, bForce);
 	}
 
 	CBasePlayerController *GetController() { return m_hController.Get(); }

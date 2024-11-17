@@ -55,12 +55,12 @@ public:
 
 	void ChangeTeam(int iTeam)
 	{
-		CALL_VIRTUAL(void, 97, this, iTeam);
+		CALL_VIRTUAL(void, 99, this, iTeam);
 	}
 
 	void Respawn()
 	{
-		CALL_VIRTUAL(void, 256, this);
+		CALL_VIRTUAL(void, 259, this);
 	}
 
 	CSPlayerState GetPawnState()

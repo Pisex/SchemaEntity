@@ -171,6 +171,7 @@ public:
 
 	Vector GetAbsOrigin() { return m_CBodyComponent->m_pSceneNode->m_vecAbsOrigin; }
 	QAngle GetAbsRotation() { return m_CBodyComponent->m_pSceneNode->m_angAbsRotation; }
+	Vector GetAbsVelocity() { return m_vecAbsVelocity; }
 	void SetAbsOrigin(Vector vecOrigin) { m_CBodyComponent->m_pSceneNode->m_vecAbsOrigin = vecOrigin; }
 	void SetAbsRotation(QAngle angAbsRotation) { m_CBodyComponent->m_pSceneNode->m_angAbsRotation = angAbsRotation; }
 	void SetAngRotation(QAngle angRotation) { m_CBodyComponent->m_pSceneNode->m_angRotation = angRotation; }
@@ -181,7 +182,7 @@ public:
 
 	void Teleport(const Vector *position, const QAngle *angles, const Vector *velocity)
 	{
-		CALL_VIRTUAL(void, 154, this, position, angles, velocity);
+		CALL_VIRTUAL(void, 156, this, position, angles, velocity);
 	}
 	
 	void SetMoveType(MoveType_t nMoveType)
@@ -193,16 +194,6 @@ public:
 	void TakeDamage(int iDamage)
 	{
 		m_iHealth() = m_iHealth() - iDamage;
-	}
-
-	bool IsPawn()
-	{
-		return CALL_VIRTUAL(bool, 159, this);
-	}
-
-	bool IsController()
-	{
-		return CALL_VIRTUAL(bool, 160, this);
 	}
 
 	void SetCollisionGroup()
@@ -217,7 +208,7 @@ public:
 
 	void CollisionRulesChanged()
 	{
-		CALL_VIRTUAL(void, 177, this);
+		CALL_VIRTUAL(void, 178, this);
 	}
 
 	int GetTeam() { return m_iTeamNum(); }

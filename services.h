@@ -80,6 +80,7 @@ public:
 	SCHEMA_FIELD(int32_t, m_nPersonaDataXpTrailLevel)
 	SCHEMA_FIELD(int32_t, m_nPersonaDataPublicLevel)
 	SCHEMA_FIELD(uint16_t, m_unMusicID)
+	SCHEMA_FIELD_POINTER(int, m_rank)
 
 };
 
@@ -177,7 +178,7 @@ public:
 
 	void DropWeapon(CBasePlayerWeapon* pWeapon, Vector* pVecTarget = nullptr, Vector* pVelocity = nullptr)
 	{
-		CALL_VIRTUAL(void, 21, this, pWeapon, pVecTarget, pVelocity);
+		CALL_VIRTUAL(void, 23, this, pWeapon, pVecTarget, pVelocity);
 	}
 };
 
@@ -208,6 +209,8 @@ private:
 	virtual void unk_12() = 0;
 	virtual void unk_13() = 0;
 	virtual void unk_14() = 0;
+	virtual void unk_15() = 0;
+	virtual void unk_16() = 0;
 	virtual CBaseEntity* _GiveNamedItem(const char* pchName) = 0;
 public:
     virtual bool         GiveNamedItemBool(const char* pchName)      = 0;

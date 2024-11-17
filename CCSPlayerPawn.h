@@ -42,6 +42,9 @@ public:
 	SCHEMA_FIELD(CPlayer_ViewModelServices*, m_pViewModelServices)
 	SCHEMA_FIELD(EntitySpottedState_t, m_entitySpottedState)
 	SCHEMA_FIELD(float, m_flFlashDuration)
+	SCHEMA_FIELD(float, m_flFlashMaxAlpha)
+	SCHEMA_FIELD(GameTime_t, m_blindUntilTime)
+	SCHEMA_FIELD(GameTime_t, m_blindStartTime)
 	
 	CCSPlayerController *GetOriginalController()
 	{

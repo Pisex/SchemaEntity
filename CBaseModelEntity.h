@@ -12,6 +12,7 @@ public:
 	SCHEMA_FIELD(Color, m_clrRender)
 	SCHEMA_FIELD(RenderMode_t, m_nRenderMode)
 	SCHEMA_FIELD(float, m_flDissolveStartTime)
+	SCHEMA_FIELD(Vector, m_vecViewOffset)
     
 	CUtlSymbolLarge GetModelName()
 	{
@@ -19,6 +20,12 @@ public:
 		if(m_CBodyComponent->m_pSceneNode == nullptr) return CUtlSymbolLarge();
 		if(((CSkeletonInstance*)m_CBodyComponent->m_pSceneNode.Get()) == nullptr) return CUtlSymbolLarge();
 		return ((CSkeletonInstance*)m_CBodyComponent->m_pSceneNode.Get())->m_modelState().m_ModelName.Get();
+	}
+
+	Vector GetEyePosition()
+	{
+		const auto x = m_vecViewOffset();
+		return x + GetAbsOrigin();
 	}
 };
 
