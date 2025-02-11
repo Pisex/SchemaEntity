@@ -32,6 +32,9 @@ public:
 	SCHEMA_FIELD(bool, m_bTCantBuy);
 	SCHEMA_FIELD(bool, m_bCTCantBuy);
 	SCHEMA_FIELD(bool, m_bSwitchingTeamsAtRoundReset);
+	SCHEMA_FIELD(int, m_iRoundEndWinnerTeam);
+	SCHEMA_FIELD(CUtlString, m_sRoundEndMessage);
+	SCHEMA_FIELD(CUtlString, m_sRoundEndFunFactToken);
 	SCHEMA_FIELD_POINTER(CUtlVector<SpawnPoint*>, m_CTSpawnPoints);
 	SCHEMA_FIELD_POINTER(CUtlVector<SpawnPoint*>, m_TerroristSpawnPoints);
 };

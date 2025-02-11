@@ -58,7 +58,7 @@ public:
 	SCHEMA_FIELD(uint16, m_iItemDefinitionIndex)
 	SCHEMA_FIELD(int32, m_iEntityQuality)
 	SCHEMA_FIELD(uint32, m_iEntityLevel)
-	SCHEMA_FIELD(uint64, m_iItemID)
+	SCHEMA_FIELD(uint64_t, m_iItemID)
 	SCHEMA_FIELD(uint32, m_iItemIDHigh)
 	SCHEMA_FIELD(uint32, m_iItemIDLow)
 	SCHEMA_FIELD(uint32, m_iAccountID)
@@ -116,7 +116,7 @@ class CBasePlayerWeapon : public CEconEntity
 public:
 	DECLARE_SCHEMA_CLASS(CBasePlayerWeapon)
 	
-	SCHEMA_FIELD(GameTick_t, m_nNextPrimaryAttackTick);
+	SCHEMA_FIELD(int, m_nNextPrimaryAttackTick);
 	SCHEMA_FIELD(float, m_flNextPrimaryAttackTickRatio);
 	SCHEMA_FIELD(GameTick_t, m_nNextSecondaryAttackTick);
 	SCHEMA_FIELD(float, m_flNextSecondaryAttackTickRatio);

@@ -83,9 +83,9 @@ static bool InitSchemaFieldsForClass(SchemaTableMap_t *tableMap, const char* cla
     {
         SchemaClassFieldData_t& field = pFields[i];
 
-#ifdef _DEBUG
-		Msg("%s::%s found at -> 0x%X - %llx\n", className, field.m_pszName, field.m_nSingleInheritanceOffset, &field);
-#endif
+// #ifdef _DEBUG
+// 		Msg("%s::%s found at -> 0x%X - %llx\n", className, field.m_pszName, field.m_nSingleInheritanceOffset, &field);
+// #endif
 
         keyValueMap->Insert(hash_32_fnv1a_const(field.m_pszName), {field.m_nSingleInheritanceOffset, IsFieldNetworked(field)});
     }

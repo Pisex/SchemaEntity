@@ -24,7 +24,6 @@ inline CEntityInstance* UTIL_FindEntityByClassname(const char* name)
 
 inline CEntityInstance* UTIL_FindEntityByEHandle(CEntityInstance* pFind)
 {
-	extern CEntitySystem* g_pEntitySystem;
 	CEntityIdentity* pEntity = g_pEntitySystem->m_EntityList.m_pFirstActiveEntity;
 
 	for (; pEntity; pEntity = pEntity->m_pNext)
@@ -38,7 +37,6 @@ inline CEntityInstance* UTIL_FindEntityByEHandle(CEntityInstance* pFind)
 
 inline std::vector<CEntityInstance*> UTIL_FindEntityByClassnameAll(const char* name)
 {
-	extern CEntitySystem* g_pEntitySystem;
 	CEntityIdentity* pEntity = g_pEntitySystem->m_EntityList.m_pFirstActiveEntity;
 	std::vector<CEntityInstance*> entities;
 	for (; pEntity; pEntity = pEntity->m_pNext)
@@ -135,6 +133,7 @@ class CBaseEntity : public CEntityInstance
 public:
 	DECLARE_SCHEMA_CLASS(CBaseEntity)
 
+	SCHEMA_FIELD(float32, m_flSimulationTime)
 	SCHEMA_FIELD(CBodyComponent *, m_CBodyComponent)
 	SCHEMA_FIELD(CBitVec<64>, m_isSteadyState)
 	SCHEMA_FIELD(float, m_lastNetworkChange)
@@ -166,10 +165,12 @@ public:
 	SCHEMA_FIELD(CUtlSymbolLarge, m_iGlobalname)
 	SCHEMA_FIELD(CHandle<CBaseEntity>, m_hOwnerEntity)
 	SCHEMA_FIELD(uint32, m_fEffects)
+	SCHEMA_FIELD(QAngle, m_vecAngVelocity)
 
 	int entindex() { return m_pEntity->m_EHandle.GetEntryIndex(); }
 
 	Vector GetAbsOrigin() { return m_CBodyComponent->m_pSceneNode->m_vecAbsOrigin; }
+	QAngle GetAngRotation() { return m_CBodyComponent->m_pSceneNode->m_angRotation; }
 	QAngle GetAbsRotation() { return m_CBodyComponent->m_pSceneNode->m_angAbsRotation; }
 	Vector GetAbsVelocity() { return m_vecAbsVelocity; }
 	void SetAbsOrigin(Vector vecOrigin) { m_CBodyComponent->m_pSceneNode->m_vecAbsOrigin = vecOrigin; }

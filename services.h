@@ -114,6 +114,14 @@ public:
 	SCHEMA_FIELD(float, m_flSurfaceFriction)
 };
 
+class CPlayer_CameraServices : public CPlayerPawnComponent
+{
+public:
+	DECLARE_SCHEMA_CLASS(CPlayer_CameraServices);
+
+	SCHEMA_FIELD(QAngle, m_vecCsViewPunchAngle)
+};
+
 class CCSPlayer_MovementServices : public CPlayer_MovementServices_Humanoid
 {
 public:
