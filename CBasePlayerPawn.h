@@ -14,6 +14,7 @@ public:
 	SCHEMA_FIELD(CPlayer_ObserverServices*, m_pObserverServices)
 	SCHEMA_FIELD(CPlayer_CameraServices*, m_pCameraServices)
 	SCHEMA_FIELD(CHandle<CBasePlayerController>, m_hController)
+	SCHEMA_FIELD(uint32, m_iHideHUD)
 
     void CommitSuicide(bool bExplode, bool bForce)
 	{

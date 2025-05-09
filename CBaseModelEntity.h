@@ -7,7 +7,7 @@ class CBaseModelEntity : public CBaseEntity
 public:
 	DECLARE_SCHEMA_CLASS(CBaseModelEntity);
 
-	SCHEMA_FIELD(CCollisionProperty , m_Collision)
+	SCHEMA_FIELD(CCollisionProperty, m_Collision)
 	SCHEMA_FIELD(CGlowProperty, m_Glow)
 	SCHEMA_FIELD(Color, m_clrRender)
 	SCHEMA_FIELD(RenderMode_t, m_nRenderMode)

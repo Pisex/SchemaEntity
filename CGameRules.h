@@ -9,6 +9,16 @@ public:
 	DECLARE_SCHEMA_CLASS(CGameRules)
 };
 
+class CCSGameModeRules_Deathmatch : public CGameRules
+{
+public:
+	DECLARE_SCHEMA_CLASS(CCSGameModeRules_Deathmatch)
+
+	SCHEMA_FIELD(GameTime_t, m_flDMBonusStartTime);
+	SCHEMA_FIELD(float32, m_flDMBonusTimeLength);
+	SCHEMA_FIELD(CUtlString, m_sDMBonusWeapon);
+};
+
 class CCSGameRules : public CGameRules
 {
 public:

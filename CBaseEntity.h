@@ -173,9 +173,9 @@ public:
 	QAngle GetAngRotation() { return m_CBodyComponent->m_pSceneNode->m_angRotation; }
 	QAngle GetAbsRotation() { return m_CBodyComponent->m_pSceneNode->m_angAbsRotation; }
 	Vector GetAbsVelocity() { return m_vecAbsVelocity; }
-	void SetAbsOrigin(Vector vecOrigin) { m_CBodyComponent->m_pSceneNode->m_vecAbsOrigin = vecOrigin; }
-	void SetAbsRotation(QAngle angAbsRotation) { m_CBodyComponent->m_pSceneNode->m_angAbsRotation = angAbsRotation; }
-	void SetAngRotation(QAngle angRotation) { m_CBodyComponent->m_pSceneNode->m_angRotation = angRotation; }
+	void SetAbsOrigin(Vector vecOrigin) { m_CBodyComponent->m_pSceneNode->m_vecAbsOrigin(vecOrigin); }
+	void SetAbsRotation(QAngle angAbsRotation) { m_CBodyComponent->m_pSceneNode->m_angAbsRotation(angAbsRotation); }
+	void SetAngRotation(QAngle angRotation) { m_CBodyComponent->m_pSceneNode->m_angRotation(angRotation); }
 	CEntitySubclassVDataBase* GetVData() { return *(CEntitySubclassVDataBase**)((uint8*)(m_nSubclassID()) + 4); }
 
 	void SetAbsVelocity(Vector vecVelocity) { m_vecAbsVelocity = vecVelocity; }

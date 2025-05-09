@@ -21,4 +21,5 @@ class CSmokeGrenadeProjectile : public CBaseCSGrenadeProjectile
 public:
 	DECLARE_SCHEMA_CLASS(CSmokeGrenadeProjectile);
 	SCHEMA_FIELD(Vector, m_vSmokeColor);
+	SCHEMA_FIELD(int, m_nSmokeEffectTickBegin);
 };

@@ -232,6 +232,11 @@ public:
 	SCHEMA_FIELD(bool, m_bHasDefuser);
 	SCHEMA_FIELD(bool, m_bHasHelmet);
 	SCHEMA_FIELD(bool, m_bHasHeavyArmor);
+
+	void RemoveWeapons()
+    {
+		CALL_VIRTUAL(void, 22, this);
+    }
 };
 
 // We need an exactly sized class to be able to iterate the vector, our schema system implementation can't do this
