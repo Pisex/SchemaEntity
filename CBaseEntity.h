@@ -9,8 +9,23 @@
 
 extern CEntitySystem* g_pEntitySystem;
 
+inline CEntityInstance* UTIL_GetEntityByIndex(int index)
+{
+	if(!g_pEntitySystem) return nullptr;
+	CEntityIdentity* pEntity = g_pEntitySystem->m_EntityList.m_pFirstActiveEntity;
+
+	for (; pEntity; pEntity = pEntity->m_pNext)
+	{
+		if (pEntity->m_EHandle.GetEntryIndex() == index)
+			return pEntity->m_pInstance;
+	};
+
+	return nullptr;
+}
+
 inline CEntityInstance* UTIL_FindEntityByClassname(const char* name)
 {
+	if(!g_pEntitySystem) return nullptr;
 	CEntityIdentity* pEntity = g_pEntitySystem->m_EntityList.m_pFirstActiveEntity;
 
 	for (; pEntity; pEntity = pEntity->m_pNext)
@@ -24,6 +39,7 @@ inline CEntityInstance* UTIL_FindEntityByClassname(const char* name)
 
 inline CEntityInstance* UTIL_FindEntityByEHandle(CEntityInstance* pFind)
 {
+	if(!g_pEntitySystem) return nullptr;
 	CEntityIdentity* pEntity = g_pEntitySystem->m_EntityList.m_pFirstActiveEntity;
 
 	for (; pEntity; pEntity = pEntity->m_pNext)
@@ -37,6 +53,7 @@ inline CEntityInstance* UTIL_FindEntityByEHandle(CEntityInstance* pFind)
 
 inline std::vector<CEntityInstance*> UTIL_FindEntityByClassnameAll(const char* name)
 {
+	if(!g_pEntitySystem) return {};
 	CEntityIdentity* pEntity = g_pEntitySystem->m_EntityList.m_pFirstActiveEntity;
 	std::vector<CEntityInstance*> entities;
 	for (; pEntity; pEntity = pEntity->m_pNext)
@@ -44,6 +61,19 @@ inline std::vector<CEntityInstance*> UTIL_FindEntityByClassnameAll(const char* n
 		if (!strcmp(pEntity->m_designerName.String(), name))
 			entities.push_back(pEntity->m_pInstance);
 	};
+	return entities;
+}
+
+inline std::vector<CEntityInstance*> UTIL_FindAllEntitiesByDesignerName(const char* name)
+{
+	if(!g_pEntitySystem) return {};
+	CEntityIdentity* pEntity = g_pEntitySystem->m_EntityList.m_pFirstActiveEntity;
+	std::vector<CEntityInstance*> entities;
+	for (; pEntity; pEntity = pEntity->m_pNext)
+	{
+		if (!pEntity->m_designerName.IsValid() || !strstr(pEntity->m_designerName.String(), "weapon_")) continue;
+		entities.push_back(pEntity->m_pInstance);
+	}
 	return entities;
 }
 
@@ -114,7 +144,7 @@ public:
 	SCHEMA_FIELD(uint64, m_MeshGroupMask)
 };
 
-class CSkeletonInstance : CGameSceneNode
+class CSkeletonInstance : public CGameSceneNode
 {
 public:
 	DECLARE_SCHEMA_CLASS(CSkeletonInstance)
@@ -197,13 +227,21 @@ public:
 		m_iHealth() = m_iHealth() - iDamage;
 	}
 
-	void SetCollisionGroup()
+	uint8 GetCollisionGroup()
+	{
+		if (!m_pCollision())
+			return 0;
+
+		return m_pCollision->m_collisionAttribute().m_nCollisionGroup;
+	}
+
+	void SetCollisionGroup(uint8 nCollisionGroup = COLLISION_GROUP_DEBRIS)
 	{
 		if (!m_pCollision())
 			return;
 
-		m_pCollision->m_collisionAttribute().m_nCollisionGroup = COLLISION_GROUP_DEBRIS;
-		m_pCollision->m_CollisionGroup = COLLISION_GROUP_DEBRIS;
+		m_pCollision->m_collisionAttribute().m_nCollisionGroup = nCollisionGroup;
+		m_pCollision->m_CollisionGroup = nCollisionGroup;
 		CollisionRulesChanged();
 	}
 

@@ -14,6 +14,7 @@ public:
 	SCHEMA_FIELD(RenderFx_t, m_nRenderFX)
 	SCHEMA_FIELD(float, m_flDissolveStartTime)
 	SCHEMA_FIELD(Vector, m_vecViewOffset)
+	SCHEMA_FIELD(float32, m_flShadowStrength)
     
 	CUtlSymbolLarge GetModelName()
 	{

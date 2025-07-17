@@ -132,6 +132,8 @@ public:
 	SCHEMA_FIELD(float, m_flStamina)
 	SCHEMA_FIELD(float, m_flDuckSpeed)
 	SCHEMA_FIELD(bool, m_bDuckOverride)
+	SCHEMA_FIELD(int32, m_nOldWaterLevel)
+	SCHEMA_FIELD(float, m_flAccumulatedJumpError)
 };
 
 class CPlayer_WeaponServices : public CPlayerPawnComponent
@@ -231,7 +233,6 @@ public:
 	
 	SCHEMA_FIELD(bool, m_bHasDefuser);
 	SCHEMA_FIELD(bool, m_bHasHelmet);
-	SCHEMA_FIELD(bool, m_bHasHeavyArmor);
 
 	void RemoveWeapons()
     {

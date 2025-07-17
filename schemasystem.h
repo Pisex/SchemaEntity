@@ -143,6 +143,15 @@ inline constexpr uint64_t hash_64_fnv1a_const(const char *const str, const uint6
 #define SCHEMA_FIELD_POINTER(type, varName) \
 	SCHEMA_FIELD_POINTER_OFFSET(type, varName, 0)
 
+#define SCHEMA_FIELD_REF(type, className, propName)                                                    \
+    std::add_lvalue_reference_t<type> propName()                                                       \
+    {                                                                                                  \
+        static const int32_t offset = schema::GetServerOffset(#className, #propName);                  \
+        if(offset == -1)                                                                               \
+            throw std::runtime_error("Failed to find " #propName " in " #className);                   \
+        return *reinterpret_cast<std::add_pointer_t<type>>(reinterpret_cast<intptr_t>(this) + offset); \
+    }
+
 namespace schema
 {
 	int16_t FindChainOffset(const char *className);

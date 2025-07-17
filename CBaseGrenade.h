@@ -8,6 +8,8 @@ class CBaseGrenade : public CBaseModelEntity
 public:
 	DECLARE_SCHEMA_CLASS(CBaseGrenade);
 	SCHEMA_FIELD(CHandle<CCSPlayerPawn>, m_hThrower);
+	SCHEMA_FIELD(float, m_flDamage);
+	SCHEMA_FIELD(float, m_DmgRadius);
 };
 
 class CBaseCSGrenadeProjectile : public CBaseGrenade

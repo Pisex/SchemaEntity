@@ -46,7 +46,7 @@ class CAttributeList
 {
 public:
     DECLARE_SCHEMA_CLASS_INLINE(CAttributeList);
-    SCHEMA_FIELD_POINTER(CUtlVector<CEconItemAttribute>, m_Attributes);
+    SCHEMA_FIELD_REF(CUtlVector<CEconItemAttribute>, CAttributeList, m_Attributes)
     SCHEMA_FIELD(CAttributeManager*, m_pManager);
 };
 
@@ -78,7 +78,7 @@ public:
 	SCHEMA_FIELD(CEconItemView, m_Item)
 };
 
-class CEconEntity : public CBaseEntity
+class CEconEntity : public CBaseModelEntity
 {
 public:
 	DECLARE_SCHEMA_CLASS(CEconEntity)
@@ -110,7 +110,8 @@ public:
 	SCHEMA_FIELD(int, m_nPrice)
 	SCHEMA_FIELD(CUtlString, m_szName)
 	SCHEMA_FIELD(int, m_nPrimaryReserveAmmoMax)
-	SCHEMA_FIELD(int, m_nSecondaryReserveAmmoMax);
+	SCHEMA_FIELD(int, m_nSecondaryReserveAmmoMax)
+	SCHEMA_FIELD(int, m_nDamage)
 };
 
 class CBasePlayerWeapon : public CEconEntity
@@ -118,7 +119,7 @@ class CBasePlayerWeapon : public CEconEntity
 public:
 	DECLARE_SCHEMA_CLASS(CBasePlayerWeapon)
 	
-	SCHEMA_FIELD(int, m_nNextPrimaryAttackTick);
+	SCHEMA_FIELD(GameTick_t, m_nNextPrimaryAttackTick);
 	SCHEMA_FIELD(float, m_flNextPrimaryAttackTickRatio);
 	SCHEMA_FIELD(GameTick_t, m_nNextSecondaryAttackTick);
 	SCHEMA_FIELD(float, m_flNextSecondaryAttackTickRatio);
@@ -163,6 +164,9 @@ class CCSWeaponBase : public CBasePlayerWeapon
 {
 public:
 	DECLARE_SCHEMA_CLASS(CCSWeaponBase)
+
+	SCHEMA_FIELD(bool, m_bInReload);
+	SCHEMA_FIELD(bool, m_bReloadVisuallyComplete);
 };
 
 

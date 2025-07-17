@@ -18,6 +18,7 @@ public:
 	SCHEMA_FIELD(int32_t, m_nDisconnectionTick);
 	SCHEMA_FIELD(CHandle<CCSPlayerPawn>, m_hPlayerPawn);
 	SCHEMA_FIELD(int32, m_DesiredObserverMode);
+	SCHEMA_FIELD(int16_t, m_nPawnCharacterDefIndex);
 	SCHEMA_FIELD(CHandle<CCSPlayerPawnBase>, m_hObserverPawn);
 	SCHEMA_FIELD(CHandle<CCSPlayerController>, m_hOriginalControllerOfCurrentPawn);
 	SCHEMA_FIELD(uint32_t, m_iPawnHealth);
@@ -40,6 +41,7 @@ public:
 
 	static CCSPlayerController* FromSlot(int iSlot)
 	{
+		if(!g_pEntitySystem)  return nullptr;
 		return (CCSPlayerController*)g_pEntitySystem->GetEntityInstance(CEntityIndex(iSlot + 1));
 	}
 
