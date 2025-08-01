@@ -14,7 +14,7 @@ enum class PlayerConnectedState : uint32_t
 	PlayerReserved = 0x5,
 };
 
-class CBasePlayerController : public CBaseEntity
+class CBasePlayerController : public CBaseModelEntity
 {
 public:
 	DECLARE_SCHEMA_CLASS(CBasePlayerController);

@@ -159,7 +159,7 @@ int32_t schema::GetServerOffset(const char* pszClassName, const char* pszPropNam
 
 void EntityNetworkStateChanged(uintptr_t entityInstance, uint nOffset)
 {
-    reinterpret_cast<CEntityInstance*>(entityInstance)->NetworkStateChanged(nOffset);
+    reinterpret_cast<CEntityInstance*>(entityInstance)->NetworkStateChanged({nOffset});
 }
 
 void ChainNetworkStateChanged(uintptr_t networkVarChainer, uint nLocalOffset)
@@ -167,6 +167,6 @@ void ChainNetworkStateChanged(uintptr_t networkVarChainer, uint nLocalOffset)
     CEntityInstance* pEntity = *reinterpret_cast<CEntityInstance**>(networkVarChainer);
     if (pEntity && (pEntity->m_pEntity->m_flags & EF_IS_CONSTRUCTION_IN_PROGRESS) == 0)
     {
-        pEntity->NetworkStateChanged(nLocalOffset, -1, *reinterpret_cast<ChangeAccessorFieldPathIndex_t*>(networkVarChainer + 32));
+        pEntity->NetworkStateChanged({nLocalOffset, -1, *reinterpret_cast<ChangeAccessorFieldPathIndex_t*>(networkVarChainer + 32)});
     }
 }

@@ -133,6 +133,7 @@ public:
 	SCHEMA_FIELD(float, m_flDuckSpeed)
 	SCHEMA_FIELD(bool, m_bDuckOverride)
 	SCHEMA_FIELD(int32, m_nOldWaterLevel)
+	SCHEMA_FIELD(int32, m_iFootsteps)
 	SCHEMA_FIELD(float, m_flAccumulatedJumpError)
 };
 

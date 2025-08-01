@@ -19,7 +19,7 @@
 
 #pragma once
 #include <functional>
-#include "utllinkedlist.h"
+#include "utlvector.h"
 
 class CTimerBase {
 public:
@@ -32,7 +32,7 @@ public:
     float m_flLastExecute = -1;
 };
 
-extern CUtlLinkedList<CTimerBase*> g_timers;
+extern CUtlVector<CTimerBase*> g_timers;
 
 // Timer functions should return the time until next execution, or a negative value like -1.0f to stop
 // Having an interval of 0 is fine, in this case it will run on every game frame
@@ -54,7 +54,7 @@ public:
 
     inline void RemoveTimer()
     {
-        for (int i = g_timers.Head(); i != g_timers.InvalidIndex(); i = g_timers.Next(i))
+        for (int i = 0; i < g_timers.Count(); ++i)
         {
             if (g_timers[i] == this)
             {

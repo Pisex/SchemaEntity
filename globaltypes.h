@@ -233,7 +233,6 @@ struct EmitSound_t
 		m_bWarnOnMissingCloseCaption(false),
 		m_bWarnOnDirectWaveReference(false),
 		m_nSpeakerEntity(-1),
-		m_UtlVecSoundOrigin(),
 		m_nForceGuid(0),
 		m_SpeakerGender(GENDER_NONE)
 	{
@@ -251,7 +250,8 @@ struct EmitSound_t
 	bool m_bWarnOnMissingCloseCaption;
 	bool m_bWarnOnDirectWaveReference;
 	CEntityIndex m_nSpeakerEntity;
-	CUtlVector<Vector, CUtlMemory<Vector, int> > m_UtlVecSoundOrigin;
+	// CUtlVector<Vector, CUtlMemory<Vector, int> > m_UtlVecSoundOrigin;
+	void* unk01;
 	SoundEventGuid_t m_nForceGuid;
 	gender_t m_SpeakerGender;
 };
@@ -347,4 +347,17 @@ struct TraceHistory
 
 	float32 error;
 	Vector velocity;
+};
+
+class CCheckTransmitInfoHack
+{
+public:
+	CBitVec<16384>* m_pTransmitEntity;
+
+private:
+	[[maybe_unused]] int8_t m_pad8[568];
+
+public:
+	int32_t m_nPlayerSlot;
+	bool m_bFullUpdate;
 };

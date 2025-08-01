@@ -19,7 +19,7 @@
 
 #include "ctimer.h"
 
-CUtlLinkedList<CTimerBase*> g_timers;
+CUtlVector<CTimerBase*> g_timers;
 
 void RemoveTimers()
 {

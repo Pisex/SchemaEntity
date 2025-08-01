@@ -36,9 +36,9 @@ class CEconItemAttribute
 public:
     DECLARE_SCHEMA_CLASS_INLINE(CEconItemAttribute);
     SCHEMA_FIELD(uint16_t, m_iAttributeDefinitionIndex);
-    SCHEMA_FIELD(int, m_flValue);
-    SCHEMA_FIELD(int, m_flInitialValue);
-    SCHEMA_FIELD(int32_t, m_nRefundableCurrency);
+    SCHEMA_FIELD(float32, m_flValue);
+    SCHEMA_FIELD(float32, m_flInitialValue);
+    SCHEMA_FIELD(int32, m_nRefundableCurrency);
     SCHEMA_FIELD(bool, m_bSetBonus);
 };
 
