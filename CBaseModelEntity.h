@@ -26,8 +26,13 @@ public:
 
 	Vector GetEyePosition()
 	{
-		const auto x = m_vecViewOffset();
-		return x + GetAbsOrigin();
+		Vector x = m_vecViewOffset;
+		Vector m_vecOrigin = GetAbsOrigin();
+		return {
+			m_vecOrigin.x + x.x,
+			m_vecOrigin.y + x.y,
+			m_vecOrigin.z + x.z
+		};
 	}
 };
 

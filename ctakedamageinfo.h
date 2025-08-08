@@ -1,6 +1,7 @@
 #pragma once
 #include <platform.h>
 #include "ehandle.h"
+#include "globaltypes.h"
 
 class CBaseEntity;
 class CCSPlayerPawn;
@@ -15,61 +16,42 @@ struct AttackerInfo_t
 	int m_iTeamChecked;
 	int m_nTeam;
 };
+static_assert(sizeof(AttackerInfo_t) == 20);
+
+class CGameTrace;
 
 class CTakeDamageInfo
 {
-private:
-	[[maybe_unused]] uint8_t __pad0000[0x8];
 public:
-	Vector m_vecDamageForce;
-	Vector m_vecDamagePosition;
-	Vector m_vecReportedPosition;
-	Vector m_vecDamageDirection;
-	CHandle<CBaseEntity> m_hInflictor;
-	CHandle<CBaseEntity> m_hAttacker;
-	CHandle<CBaseEntity> m_hAbility;
-	float m_flDamage;
-	float m_flTotalledDamage;
-	float m_flTotalledDamageAbsorbed;
-	DamageTypes_t m_bitsDamageType;
-	int32_t m_iDamageCustom;
-	uint8_t m_iAmmoType;
+	DECLARE_SCHEMA_CLASS(CTakeDamageInfo)
 
-private:
-	[[maybe_unused]] uint8_t __pad0059[0xf];
-
-public:
-	float m_flOriginalDamage;
-	bool m_bShouldBleed;
-	bool m_bShouldSpark;
-
-private:
-	[[maybe_unused]] uint8_t __pad006e[0x2];
-
-public:
-	float m_flDamageAbsorbed;
-
-private:
-	[[maybe_unused]] uint8_t __pad0074[0x8];
-
-public:
-	TakeDamageFlags_t m_nDamageFlags;
-
-private:
-	[[maybe_unused]] uint8_t __pad0084[0x4];
-
-public:
-	int32_t m_nNumObjectsPenetrated;
-	float m_flFriendlyFireDamageReductionRatio;
-	uint64_t m_hScriptInstance;
-	AttackerInfo_t m_AttackerInfo;
-	bool m_bInTakeDamageFlow;
-
-private:
-	[[maybe_unused]] uint8_t __pad00ad[0x4];
+	SCHEMA_FIELD(Vector, m_vecDamageForce);
+	SCHEMA_FIELD(Vector, m_vecDamagePosition);
+	SCHEMA_FIELD(Vector, m_vecReportedPosition);
+	SCHEMA_FIELD(Vector, m_vecDamageDirection);
+	SCHEMA_FIELD(CBaseHandle, m_hInflictor);
+	SCHEMA_FIELD(CBaseHandle, m_hAttacker);
+	SCHEMA_FIELD(CBaseHandle, m_hAbility);
+	SCHEMA_FIELD(float, m_flDamage);
+	SCHEMA_FIELD(float, m_flTotalledDamage);
+	SCHEMA_FIELD(int32_t, m_bitsDamageType);
+	SCHEMA_FIELD(int32_t, m_iDamageCustom);
+	SCHEMA_FIELD(int8_t, m_iAmmoType);
+	SCHEMA_FIELD(float, m_flOriginalDamage);
+	SCHEMA_FIELD(bool, m_bShouldBleed);
+	SCHEMA_FIELD(bool, m_bShouldSpark);
+	SCHEMA_FIELD(float, m_flDamageAbsorbed);
+	SCHEMA_FIELD(TakeDamageFlags_t, m_nDamageFlags);
+	SCHEMA_FIELD(HitGroup_t, m_iHitGroupId);
+	SCHEMA_FIELD(int32_t, m_nNumObjectsPenetrated);
+	SCHEMA_FIELD(float, m_flFriendlyFireDamageReductionRatio);
+	SCHEMA_FIELD(AttackerInfo_t, m_AttackerInfo);
+	SCHEMA_FIELD(bool, m_bInTakeDamageFlow);
 };
 
 struct CTakeDamageInfoContainer
 {
-	CTakeDamageInfo* pInfo;
+	DECLARE_SCHEMA_CLASS(CTakeDamageInfoContainer)
+
+	SCHEMA_FIELD_POINTER(CTakeDamageInfo, m_DamageInfo);
 };

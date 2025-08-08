@@ -76,7 +76,6 @@ inline std::vector<CEntityInstance*> UTIL_FindAllEntitiesByDesignerName(const ch
 	}
 	return entities;
 }
-
 class CGameSceneNode
 {
 public:
@@ -213,7 +212,7 @@ public:
 
 	void Teleport(const Vector *position, const QAngle *angles, const Vector *velocity)
 	{
-		CALL_VIRTUAL(void, 156, this, position, angles, velocity);
+		CALL_VIRTUAL(void, 165, this, position, angles, velocity);
 	}
 	
 	void SetMoveType(MoveType_t nMoveType)

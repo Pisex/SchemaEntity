@@ -18,6 +18,7 @@
  */
 
 #pragma once
+#include <bitset>
 #include <platform.h>
 #include "globaltypes.h"
 #include <CCSWeaponBase.h>

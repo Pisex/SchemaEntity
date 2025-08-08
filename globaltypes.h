@@ -22,11 +22,6 @@
 #include "schemasystem.h"
 #include "soundflags.h"
 
-// struct TransmitInfo
-// {
-// 	CBitVec<16384> *m_pTransmitEdict;
-// };
-
 enum CSRoundEndReason
 {
 	TargetBombed = 1,	  /**< Target Successfully Bombed! */
@@ -360,4 +355,20 @@ private:
 public:
 	int32_t m_nPlayerSlot;
 	bool m_bFullUpdate;
+};
+
+struct trace_info_t {
+	CEntityInstance *m_pEnt;
+	const CHitBox *m_pHitbox;
+	Vector m_vStartPos;
+	Vector m_vEndPos;
+	Vector m_vHitNormal;
+	Vector m_vHitPoint;
+	float m_flHitOffset;
+	float m_flFraction;
+	int32 m_nTriangle;
+	int16 m_nHitboxBoneIndex;
+	RayType_t m_eRayType;
+	bool m_bStartInSolid;
+	bool m_bExactHitPoint;
 };
