@@ -228,25 +228,26 @@ struct EmitSound_t
 		m_bWarnOnMissingCloseCaption(false),
 		m_bWarnOnDirectWaveReference(false),
 		m_nSpeakerEntity(-1),
+		m_UtlVecSoundOrigin(),
 		m_nForceGuid(0),
 		m_SpeakerGender(GENDER_NONE)
 	{
 	}
 	int m_nChannel;
-	const char *m_pSoundName;
+	const char* m_pSoundName;
 	float m_flVolume;
 	soundlevel_t m_SoundLevel;
 	int m_nFlags;
 	int m_nPitch;
-	const Vector *m_pOrigin;
+	const Vector* m_pOrigin;
 	float m_flSoundTime;
-	float *m_pflSoundDuration;
+	float* m_pflSoundDuration;
 	bool m_bEmitCloseCaption;
 	bool m_bWarnOnMissingCloseCaption;
 	bool m_bWarnOnDirectWaveReference;
 	CEntityIndex m_nSpeakerEntity;
-	// CUtlVector<Vector, CUtlMemory<Vector, int> > m_UtlVecSoundOrigin;
-	void* unk01;
+    // CUtlVector<Vector, CUtlMemory<Vector, int> > m_UtlVecSoundOrigin; hl2sdk-cs2
+    CUtlVector<Vector, int> m_UtlVecSoundOrigin; //wender sdk
 	SoundEventGuid_t m_nForceGuid;
 	gender_t m_SpeakerGender;
 };
@@ -371,4 +372,9 @@ struct trace_info_t {
 	RayType_t m_eRayType;
 	bool m_bStartInSolid;
 	bool m_bExactHitPoint;
+
+	bool DidHit() const 
+	{ 
+		return m_flFraction < 1 || m_bStartInSolid; 
+	}
 };

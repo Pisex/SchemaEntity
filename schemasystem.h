@@ -44,20 +44,20 @@ struct SchemaKey
 	bool networked;
 };
 
-class CNetworkVarChainer
-{
-public:
-	CEntityInstance* m_pEntity;
+// class CNetworkVarChainer
+// {
+// public:
+// 	CEntityInstance* m_pEntity;
 
-private:
-	uint8 pad_0000[24];
+// private:
+// 	uint8 pad_0000[24];
 
-public:
-	ChangeAccessorFieldPathIndex_t m_PathIndex;
+// public:
+// 	ChangeAccessorFieldPathIndex_t m_PathIndex;
 
-private:
-	uint8 pad_0024[4];
-};
+// private:
+// 	uint8 pad_0024[4];
+// };
 
 void EntityNetworkStateChanged(uintptr_t pEntity, uint nOffset);
 void ChainNetworkStateChanged(uintptr_t pNetworkVarChainer, uint nOffset);
@@ -229,6 +229,15 @@ inline constexpr uint64_t hash_64_fnv1a_const(const char* const str, const uint6
 		static constexpr uint32_t m_classNameHash = hash_32_fnv1a_const(#ClassName);\
 		static constexpr int m_networkStateChangedOffset = offset;					\
 	public:
+
+#define SCHEMA_FIELD_OLD(type, className, propName)                                                    \
+    std::add_lvalue_reference_t<type> propName()                                                       \
+    {                                                                                                  \
+        static const int32_t offset = schema::GetServerOffset(#className, #propName);        \
+        if(offset == -1)                                                                               \
+            std::runtime_error("Failed to find " #propName " in " #className);                         \
+        return *reinterpret_cast<std::add_pointer_t<type>>(reinterpret_cast<intptr_t>(this) + offset); \
+    }
 
 #define DECLARE_SCHEMA_CLASS(className) DECLARE_SCHEMA_CLASS_BASE(className, 0)
 

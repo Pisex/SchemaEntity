@@ -65,12 +65,31 @@ public:
 
 class CPlayerPawnComponent
 {
+	virtual ~CPlayerPawnComponent() = 0;
+	virtual void unk_01() = 0;
+	virtual void unk_02() = 0;
+	virtual void unk_03() = 0;
+	virtual void unk_04() = 0;
+	virtual void unk_05() = 0;
+	virtual void unk_06() = 0;
+	virtual void unk_07() = 0;
+	virtual void unk_08() = 0;
+	virtual void unk_09() = 0;
+	virtual void unk_10() = 0;
+	virtual void unk_11() = 0;
+	virtual void unk_12() = 0;
+	virtual void unk_13() = 0;
+	virtual void unk_14() = 0;
+	virtual void unk_15() = 0;
+	virtual void unk_16() = 0;
+	virtual void unk_17() = 0;
+
 public:
 	DECLARE_SCHEMA_CLASS(CPlayerPawnComponent);
 
-	SCHEMA_FIELD(CCSPlayerPawn*, __m_pChainEntity)
+	SCHEMA_FIELD(CNetworkVarChainer, __m_pChainEntity)
 
-	CCSPlayerPawn *GetPawn() { return __m_pChainEntity; }
+	CCSPlayerPawn* GetPawn() { return reinterpret_cast<CCSPlayerPawn*>(__m_pChainEntity()->m_pEntity); }
 };
 
 class CCSPlayerController_InventoryServices
@@ -87,6 +106,7 @@ public:
 
 class CPlayer_MovementServices : public CPlayerPawnComponent
 {
+	virtual ~CPlayer_MovementServices() = 0;
 public:
 	DECLARE_SCHEMA_CLASS(CPlayer_MovementServices);
 
@@ -104,6 +124,7 @@ public:
 
 class CPlayer_MovementServices_Humanoid : public CPlayer_MovementServices
 {
+	virtual ~CPlayer_MovementServices_Humanoid() = 0;
 public:
 	DECLARE_SCHEMA_CLASS(CPlayer_MovementServices_Humanoid);
 
@@ -117,14 +138,17 @@ public:
 
 class CPlayer_CameraServices : public CPlayerPawnComponent
 {
+	virtual ~CPlayer_CameraServices() = 0;
 public:
 	DECLARE_SCHEMA_CLASS(CPlayer_CameraServices);
 
 	SCHEMA_FIELD(QAngle, m_vecCsViewPunchAngle)
+	SCHEMA_FIELD(CHandle<CBaseEntity>, m_hViewEntity)
 };
 
 class CCSPlayer_MovementServices : public CPlayer_MovementServices_Humanoid
 {
+	virtual ~CCSPlayer_MovementServices() = 0;
 public:
 	DECLARE_SCHEMA_CLASS(CCSPlayer_MovementServices);
 
@@ -140,6 +164,7 @@ public:
 
 class CPlayer_WeaponServices : public CPlayerPawnComponent
 {
+	virtual ~CPlayer_WeaponServices() = 0;
 public:
 	DECLARE_SCHEMA_CLASS(CPlayer_WeaponServices);
 
@@ -151,6 +176,7 @@ public:
 
 class CPlayer_ViewModelServices : public CPlayerPawnComponent
 {
+	virtual ~CPlayer_ViewModelServices() = 0;
 public:
 	DECLARE_SCHEMA_CLASS(CPlayer_ViewModelServices);
 };
@@ -164,6 +190,7 @@ public:
 
 class CCSPlayer_ViewModelServices : public CPlayer_ViewModelServices
 {
+	virtual ~CCSPlayer_ViewModelServices() = 0;
 public:
 	DECLARE_SCHEMA_CLASS(CCSPlayer_ViewModelServices);
 	SCHEMA_FIELD_POINTER(CHandle<CBaseViewModel>, m_hViewModel)
@@ -172,6 +199,7 @@ public:
 
 class CCSPlayer_WeaponServices : public CPlayer_WeaponServices
 {
+	virtual ~CCSPlayer_WeaponServices() = 0;
 public:
 	DECLARE_SCHEMA_CLASS(CCSPlayer_WeaponServices);
 
@@ -190,7 +218,7 @@ public:
 
 	void DropWeapon(CBasePlayerWeapon* pWeapon, Vector* pVecTarget = nullptr, Vector* pVelocity = nullptr)
 	{
-		CALL_VIRTUAL(void, 23, this, pWeapon, pVecTarget, pVelocity);
+		CALL_VIRTUAL(void, 24, this, pWeapon, pVecTarget, pVelocity);
 	}
 };
 
@@ -202,43 +230,37 @@ public:
     SCHEMA_FIELD(int, m_iAccount);
 };
 
-class CCSPlayer_ItemServices
+class CPlayer_ItemServices : public CPlayerPawnComponent
 {
-public:
-	virtual ~CCSPlayer_ItemServices() = 0;
-private:
-	virtual void unk_01() = 0;
-	virtual void unk_02() = 0;
-	virtual void unk_03() = 0;
-	virtual void unk_04() = 0;
-	virtual void unk_05() = 0;
-	virtual void unk_06() = 0;
-	virtual void unk_07() = 0;
-	virtual void unk_08() = 0;
-	virtual void unk_09() = 0;
-	virtual void unk_10() = 0;
-	virtual void unk_11() = 0;
-	virtual void unk_12() = 0;
-	virtual void unk_13() = 0;
-	virtual void unk_14() = 0;
-	virtual void unk_15() = 0;
-	virtual void unk_16() = 0;
-	virtual CBaseEntity* _GiveNamedItem(const char* pchName) = 0;
-public:
-    virtual bool         GiveNamedItemBool(const char* pchName)      = 0;
-    virtual CBaseEntity* GiveNamedItem(const char* pchName)          = 0;
-	// Recommended to use CCSPlayer_WeaponServices::DropWeapon instead (parameter is ignored here)
-    virtual void         DropActiveWeapon(CBasePlayerWeapon* pWeapon) = 0;
-    virtual void         StripPlayerWeapons(bool removeSuit = false) = 0;
+	virtual ~CPlayer_ItemServices() = 0;
 
+public:
+	DECLARE_SCHEMA_CLASS(CPlayer_ItemServices);
+};
+
+class CCSPlayer_ItemServices : public CPlayer_ItemServices
+{
+	virtual ~CCSPlayer_ItemServices() = 0;
+
+public:
 	DECLARE_SCHEMA_CLASS(CCSPlayer_ItemServices);
-	
+
+private:
+	virtual CBasePlayerWeapon* _GiveNamedItem(const char* pchName) = 0;
+
+public:
+	virtual bool GiveNamedItemBool(const char* pchName) = 0;
+	virtual CBasePlayerWeapon* GiveNamedItem(const char* pchName) = 0;
+	// Recommended to use CCSPlayer_WeaponServices::DropWeapon instead (parameter is ignored here)
+	virtual void DropActiveWeapon(CBasePlayerWeapon* pWeapon) = 0;
+	virtual void StripPlayerWeapons(bool removeSuit) = 0;
+
 	SCHEMA_FIELD(bool, m_bHasDefuser);
 	SCHEMA_FIELD(bool, m_bHasHelmet);
 
 	void RemoveWeapons()
     {
-		CALL_VIRTUAL(void, 22, this);
+		CALL_VIRTUAL(void, 23, this);
     }
 };
 

@@ -205,20 +205,22 @@ int32_t schema::GetServerOffset(const char* pszClassName, const char* pszPropNam
 
 void NetworkVarStateChanged(uintptr_t pNetworkVar, uint32_t nOffset, uint32 nNetworkStateChangedOffset)
 {
-	NetworkStateChangedData data(nOffset);
+	NetworkStateChanged_t data(nOffset);
 	CALL_VIRTUAL(void, nNetworkStateChangedOffset, (void*)pNetworkVar, &data);
 }
 
 void EntityNetworkStateChanged(uintptr_t pEntity, uint nOffset)
 {
-	NetworkStateChangedData data(nOffset);
-	reinterpret_cast<CEntityInstance*>(pEntity)->NetworkStateChanged(NetworkStateChangedData(nOffset));
+	NetworkStateChanged_t data(nOffset);
+	reinterpret_cast<CEntityInstance*>(pEntity)->NetworkStateChanged(data);
 }
 
 void ChainNetworkStateChanged(uintptr_t pNetworkVarChainer, uint nLocalOffset)
 {
-	CEntityInstance* pEntity = reinterpret_cast<CNetworkVarChainer*>(pNetworkVarChainer)->m_pEntity;
+	auto* ch = reinterpret_cast<CNetworkVarChainer*>(pNetworkVarChainer);
+	CEntityInstance* pEntity = *reinterpret_cast<CEntityInstance**>(pNetworkVarChainer);
 
-	if (pEntity)
-		pEntity->NetworkStateChanged(NetworkStateChangedData(nLocalOffset, -1, reinterpret_cast<CNetworkVarChainer*>(pNetworkVarChainer)->m_PathIndex));
+    if (pEntity)
+        pEntity->NetworkStateChanged(
+            NetworkStateChanged_t(nLocalOffset, -1, ch->m_PathIndex));
 }

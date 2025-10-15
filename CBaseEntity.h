@@ -187,6 +187,7 @@ public:
 	SCHEMA_FIELD_POINTER(CUtlStringToken, m_nSubclassID)
 	SCHEMA_FIELD(float, m_flFriction)
 	SCHEMA_FIELD(float, m_flGravityScale)
+	SCHEMA_FIELD(float, m_flActualGravityScale)
 	SCHEMA_FIELD(float, m_flTimeScale)
 	SCHEMA_FIELD(float, m_flSpeed)
 	SCHEMA_FIELD(CUtlString, m_sUniqueHammerID)
@@ -212,7 +213,7 @@ public:
 
 	void Teleport(const Vector *position, const QAngle *angles, const Vector *velocity)
 	{
-		CALL_VIRTUAL(void, 165, this, position, angles, velocity);
+		CALL_VIRTUAL(void, 164, this, position, angles, velocity);
 	}
 	
 	void SetMoveType(MoveType_t nMoveType)
@@ -223,7 +224,7 @@ public:
 
 	void TakeDamage(int iDamage)
 	{
-		m_iHealth() = m_iHealth() - iDamage;
+		m_iHealth(m_iHealth() - iDamage);
 	}
 
 	uint8 GetCollisionGroup()
@@ -246,7 +247,7 @@ public:
 
 	void CollisionRulesChanged()
 	{
-		CALL_VIRTUAL(void, 178, this);
+		CALL_VIRTUAL(void, 189, this);
 	}
 
 	int GetTeam() { return m_iTeamNum(); }

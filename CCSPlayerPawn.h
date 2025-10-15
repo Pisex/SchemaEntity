@@ -42,7 +42,6 @@ class CCSPlayerPawnBase : public CBasePlayerPawn
 public:
 	DECLARE_SCHEMA_CLASS(CCSPlayerPawnBase);
 	
-	SCHEMA_FIELD(QAngle, m_angEyeAngles)
 	SCHEMA_FIELD(CSPlayerState, m_iPlayerState)
 	SCHEMA_FIELD(CHandle<CCSPlayerController>, m_hOriginalController)
 	SCHEMA_FIELD(int32_t, m_iProgressBarDuration);
@@ -70,6 +69,7 @@ class CCSPlayerPawn : public CCSPlayerPawnBase
 public:
 	DECLARE_SCHEMA_CLASS(CCSPlayerPawn);
 
+	SCHEMA_FIELD(QAngle, m_angEyeAngles);
 	SCHEMA_FIELD(CEconItemView, m_EconGloves);
 	SCHEMA_FIELD(uint8, m_nEconGlovesChanged);
 	SCHEMA_FIELD(uint16, m_nCharacterDefIndex);

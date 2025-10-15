@@ -47,6 +47,7 @@ class CAttributeList
 public:
     DECLARE_SCHEMA_CLASS_INLINE(CAttributeList);
     SCHEMA_FIELD(CAttributeManager*, m_pManager);
+	SCHEMA_FIELD_OLD(CUtlVector<CEconItemAttribute>, CAttributeList, m_Attributes);
 };
 
 class CEconItemView
@@ -166,6 +167,10 @@ public:
 
 	SCHEMA_FIELD(bool, m_bInReload);
 	SCHEMA_FIELD(bool, m_bReloadVisuallyComplete);
+
+	SCHEMA_FIELD(float, m_fAccuracyPenalty);
+	SCHEMA_FIELD(int, m_iRecoilIndex);
+	SCHEMA_FIELD(float, m_flRecoilIndex);
 };
 
 
@@ -179,4 +184,13 @@ class CCSWeaponBaseGun : public CCSWeaponBase
 {
 public:
 	DECLARE_SCHEMA_CLASS(CCSWeaponBaseGun)
+};
+
+class CWeaponTaser : public CCSWeaponBaseGun
+{
+public:
+	DECLARE_SCHEMA_CLASS(CWeaponTaser)
+
+	SCHEMA_FIELD(GameTime_t, m_fFireTime);
+	SCHEMA_FIELD(int32, m_nLastAttackTick);
 };
