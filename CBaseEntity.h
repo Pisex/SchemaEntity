@@ -213,7 +213,7 @@ public:
 
 	void Teleport(const Vector *position, const QAngle *angles, const Vector *velocity)
 	{
-		CALL_VIRTUAL(void, 164, this, position, angles, velocity);
+		CALL_VIRTUAL(void, 167, this, position, angles, velocity);
 	}
 	
 	void SetMoveType(MoveType_t nMoveType)
@@ -247,7 +247,7 @@ public:
 
 	void CollisionRulesChanged()
 	{
-		CALL_VIRTUAL(void, 189, this);
+		CALL_VIRTUAL(void, 190, this);
 	}
 
 	int GetTeam() { return m_iTeamNum(); }

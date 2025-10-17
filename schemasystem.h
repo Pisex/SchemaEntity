@@ -44,20 +44,20 @@ struct SchemaKey
 	bool networked;
 };
 
-// class CNetworkVarChainer
-// {
-// public:
-// 	CEntityInstance* m_pEntity;
+class CNetworkVarChainer2
+{
+public:
+	CEntityInstance* m_pEntity;
 
-// private:
-// 	uint8 pad_0000[24];
+private:
+	uint8 pad_0000[24];
 
-// public:
-// 	ChangeAccessorFieldPathIndex_t m_PathIndex;
+public:
+	ChangeAccessorFieldPathIndex_t m_PathIndex;
 
-// private:
-// 	uint8 pad_0024[4];
-// };
+private:
+	uint8 pad_0024[4];
+};
 
 void EntityNetworkStateChanged(uintptr_t pEntity, uint nOffset);
 void ChainNetworkStateChanged(uintptr_t pNetworkVarChainer, uint nOffset);

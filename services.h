@@ -87,9 +87,9 @@ class CPlayerPawnComponent
 public:
 	DECLARE_SCHEMA_CLASS(CPlayerPawnComponent);
 
-	SCHEMA_FIELD(CNetworkVarChainer, __m_pChainEntity)
+	SCHEMA_FIELD(CNetworkVarChainer2, __m_pChainEntity)
 
-	CCSPlayerPawn* GetPawn() { return reinterpret_cast<CCSPlayerPawn*>(__m_pChainEntity()->m_pEntity); }
+	CCSPlayerPawn* GetPawn() { return reinterpret_cast<CCSPlayerPawn*>(__m_pChainEntity().m_pEntity); }
 };
 
 class CCSPlayerController_InventoryServices
@@ -102,6 +102,12 @@ public:
 	SCHEMA_FIELD(uint16_t, m_unMusicID)
 	SCHEMA_FIELD_POINTER(int, m_rank)
 
+};
+
+class CCSPlayer_DamageReactServices : public CPlayerPawnComponent
+{
+	virtual ~CCSPlayer_DamageReactServices() = 0;
+public:
 };
 
 class CPlayer_MovementServices : public CPlayerPawnComponent

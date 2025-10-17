@@ -217,10 +217,10 @@ void EntityNetworkStateChanged(uintptr_t pEntity, uint nOffset)
 
 void ChainNetworkStateChanged(uintptr_t pNetworkVarChainer, uint nLocalOffset)
 {
-	auto* ch = reinterpret_cast<CNetworkVarChainer*>(pNetworkVarChainer);
-	CEntityInstance* pEntity = *reinterpret_cast<CEntityInstance**>(pNetworkVarChainer);
+    CEntityInstance* pEntity = reinterpret_cast<CNetworkVarChainer2*>(pNetworkVarChainer)->m_pEntity;
 
     if (pEntity)
-        pEntity->NetworkStateChanged(
-            NetworkStateChanged_t(nLocalOffset, -1, ch->m_PathIndex));
+		// NetworkStateChanged_t WENDER SDK
+		// NetworkStateChangedData HL2SDK-CS@
+        pEntity->NetworkStateChanged(NetworkStateChanged_t(nLocalOffset, -1, reinterpret_cast<CNetworkVarChainer2*>(pNetworkVarChainer)->m_PathIndex));
 }
