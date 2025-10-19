@@ -205,13 +205,13 @@ int32_t schema::GetServerOffset(const char* pszClassName, const char* pszPropNam
 
 void NetworkVarStateChanged(uintptr_t pNetworkVar, uint32_t nOffset, uint32 nNetworkStateChangedOffset)
 {
-	NetworkStateChanged_t data(nOffset);
+	NetworkStateChangedData data(nOffset);
 	CALL_VIRTUAL(void, nNetworkStateChangedOffset, (void*)pNetworkVar, &data);
 }
 
 void EntityNetworkStateChanged(uintptr_t pEntity, uint nOffset)
 {
-	NetworkStateChanged_t data(nOffset);
+	NetworkStateChangedData data(nOffset);
 	reinterpret_cast<CEntityInstance*>(pEntity)->NetworkStateChanged(data);
 }
 
@@ -220,7 +220,7 @@ void ChainNetworkStateChanged(uintptr_t pNetworkVarChainer, uint nLocalOffset)
     CEntityInstance* pEntity = reinterpret_cast<CNetworkVarChainer2*>(pNetworkVarChainer)->m_pEntity;
 
     if (pEntity)
-		// NetworkStateChanged_t WENDER SDK
+		// NetworkStateChangedData WENDER SDK
 		// NetworkStateChangedData HL2SDK-CS@
-        pEntity->NetworkStateChanged(NetworkStateChanged_t(nLocalOffset, -1, reinterpret_cast<CNetworkVarChainer2*>(pNetworkVarChainer)->m_PathIndex));
+        pEntity->NetworkStateChanged(NetworkStateChangedData(nLocalOffset, -1, reinterpret_cast<CNetworkVarChainer2*>(pNetworkVarChainer)->m_PathIndex));
 }
